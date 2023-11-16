@@ -1,0 +1,8 @@
+.vscode
+.venv
+
+inventories/*
+!inventories/sample
+
+roles/debug
+debug.yaml

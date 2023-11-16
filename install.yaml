@@ -1,0 +1,7 @@
+---
+- name: Deploy smart home softwire
+  hosts:
+    - all
+  become: true
+  roles:
+    - base_prep

@@ -1,0 +1,23 @@
+---
+- name: Update package cache
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Upgrade installed packages
+  ansible.builtin.apt:
+    upgrade: true
+
+- name: Install docker
+  block:
+    - name: Install docker dependency
+      ansible.builtin.package:
+        name:
+          - ca-certificates
+          - curl
+          - gnupg
+        state: present
+    - name: Install Docker key
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        dest: /etc/apt/keyrings/docker.gpg
+        mode: '0755'

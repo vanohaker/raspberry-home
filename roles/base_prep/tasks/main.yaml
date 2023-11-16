@@ -1,0 +1,13 @@
+---
+
+- name: Source specific variables
+  ansible.builtin.include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}.yaml"
+    - "{{ ansible_os_family }}.yaml"
+
+- name: Source specific tasks for this OS
+  ansible.builtin.include_tasks: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}.yaml"
+    - "{{ ansible_os_family }}.yaml"
